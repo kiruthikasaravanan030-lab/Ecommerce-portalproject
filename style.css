@@ -1,0 +1,5 @@
+body{font-family: Arial, Helvetica, sans-serif;margin:0;padding:0}
+.topnav{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;background:#073b4c;color:#fff}
+.topnav nav a{color:#fff;margin-left:16px;text-decoration:none}
+.brand{font-weight:700}
+main{padding:24px}

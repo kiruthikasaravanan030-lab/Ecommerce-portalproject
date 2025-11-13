@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><title>Dashboard</title></head><body>
+  <h2>Your Orders</h2>
+  <div id="orders"></div>
+
+  <h2>Your Wishlist</h2>
+  <div id="wishlist"></div>
+
+  <h2>Reviews</h2>
+  <div id="reviews"></div>
+
+  <h2>Customer Care</h2>
+  <div id="customer-care">
+    <p>Email: support@college-eshop.edu</p>
+    <p>Phone: +91-9876543210</p>
+  </div>
+
+  <h2>Reporting</h2>
+  <div id="reports">
+    <p>Report issues / feedback form (link to a form)</p>
+  </div>
+
+<script>
+async function loadData(){
+  const orders = await fetch('/api/user/orders').then(r=>r.json());
+  const wishlist = await fetch('/api/user/wishlist').then(r=>r.json());
+  const reviews = await fetch('/api/product/reviews').then(r=>r.json());
+
+  document.getElementById('orders').innerHTML = orders.map(o=>`<div>Order #${o.id} - ${o.status} - ₹${o.total}</div>`).join('');
+  document.getElementById('wishlist').innerHTML = wishlist.map(w=>`<div>${w.name} - ₹${w.price}</div>`).join('');
+  document.getElementById('reviews').innerHTML = reviews.map(r=>`<div>${r.user} on ${r.product}: ${'★'.repeat(r.rating)} <br/>${r.text}</div>`).join('');
+}
+loadData();
+</script>
+</body></html>
